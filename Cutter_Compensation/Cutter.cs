@@ -61,16 +61,29 @@ namespace Cutter_Compensation
                 Result = (decimal)(Math.Acos((double)Cos_theta) * 180 / Math.PI);
             }
             //角度范围约束
-            if (Result >= 359.99m)
+            if (Math.Abs(Result - 360) <= 0.00001m)
+            {
+                Result = 360.0m;
+            }
+            else if ((Result > 0.000m) && (Result <= 0.00001m))
             {
                 Result = 0.0m;
             }
-            else if ((Result > 0.0m) && (Result <= 0.01m))
+            else if (Math.Abs(Result - 90) <= 0.00001m)
             {
-                Result = 360.0m;
+                Result = 90.0m;
+            }
+            else if (Math.Abs(Result - 180) <= 0.00001m)
+            {
+                Result = 180.0m;
+            }
+            else if (Math.Abs(Result - 270) <= 0.00001m)
+            {
+                Result = 270.0m;
             }
             //返回角度值
             return Result;
         }
+        //
     }
 }
