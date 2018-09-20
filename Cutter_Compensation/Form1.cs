@@ -22,7 +22,7 @@ namespace Cutter_Compensation
         //测试按钮
         private void test_btn_Click(object sender, EventArgs e)
         {
-            richTextBox1.AppendText ( string.Format("向量夹角: {0}", (double)test.AngleBetweenPoints(A,B)) + "\r\n");
+            richTextBox1.AppendText ( string.Format("向量夹角: {0}", (double)test.AngleBetweenVector(A,B)) + "\r\n");
                 
         }
 

@@ -50,9 +50,23 @@ namespace Cutter_Compensation
         //获取两向量的夹角 从第一个向量逆时针指向第二个向量的夹角 [0-360]
         public decimal AngleBetweenVector(Vector point1, Vector point2) 
         {
-            decimal Result=0;
+            decimal Result = 0;
             decimal Cos_theta = Dot(point1, point2) / (point1.Length() * point2.Length());
-            if (AngleLargeThanPi(point1,point2))
+            //范围限制
+            if (Math.Abs(Cos_theta - 1.0m) < 0.00001m)
+            {
+                Cos_theta = 1.0m;
+            }
+            else if (Math.Abs(Cos_theta + 1.0m) < 0.00001m)
+            {
+                Cos_theta = -1.0m;
+            }
+            else if (Math.Abs(Cos_theta) < 0.00001m)
+            {
+                Cos_theta = 0.0m;
+            }
+            //计算角度
+            if (AngleLargeThanPi(point1, point2))
             {
                 Result = 360 - (decimal)(Math.Acos((double)Cos_theta) * 180 / Math.PI);
             }
