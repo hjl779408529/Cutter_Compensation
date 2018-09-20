@@ -48,7 +48,7 @@ namespace Cutter_Compensation
             return (temp < 0);
         }
         //获取两向量的夹角 从第一个向量逆时针指向第二个向量的夹角 [0-360]
-        public decimal AngleBetweenPoints(Vector point1, Vector point2)
+        public decimal AngleBetweenVector(Vector point1, Vector point2) 
         {
             decimal Result=0;
             decimal Cos_theta = Dot(point1, point2) / (point1.Length() * point2.Length());
