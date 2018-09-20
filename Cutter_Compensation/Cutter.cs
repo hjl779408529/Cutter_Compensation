@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using MathNet;
 namespace Cutter_Compensation
 {
@@ -98,6 +99,26 @@ namespace Cutter_Compensation
             //返回角度值
             return Result;
         }
-        //
+        //计算等距线交点
+        public Vector Cal_Cross_Point(Vector point1, Vector point2, Vector org_point,decimal distance)
+        {
+            //先计算角度
+            decimal Angle = AngleBetweenVector(point1,point2);
+            //在计算交点
+            //计算等距线交点
+            if (Angle == 180) //角度为180,共线且方向相反
+            {
+                MessageBox.Show("两直线所在向量夹角为0，数据错误！！");
+                return new Vector(0,0);
+            }
+            else if (Angle == 0) //角度为0,共线
+            {
+                return new Vector(org_point.X - distance * point1.Y, org_point.Y + distance * point1.X);
+            }
+            else
+            {
+                return new Vector(org_point.X + distance * (point2.X - point1.X) / (point1.X * point2.Y - point2.X * point1.Y), org_point.Y + distance * (point2.Y - point1.Y) / (point1.X * point2.Y - point2.X * point1.Y));
+            }
+        }
     }
 }
